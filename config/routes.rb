@@ -7,4 +7,10 @@ Rails.application.routes.draw do
       get "quotes/:tag", to: "quotes#show", as: :quote
     end
   end
+
+  require "sidekiq/web"
+  require "sidekiq/cron/web"
+
+  mount Sidekiq::Web => '/sidekiq'
+
 end
