@@ -1,0 +1,5 @@
+updatedb_job:
+  cron: "0 */12 * * *"
+  class: "UpdatedbJob"
+  queue: default
+
