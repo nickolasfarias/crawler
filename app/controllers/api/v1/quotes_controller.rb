@@ -10,7 +10,7 @@ class Api::V1::QuotesController < ApplicationController
       set_quotes
 
     #Caso a tag já tenha sido buscada AND não retornou nenhuma quote, tento fazer o scraping normalmente de novo
-    elsif tag_searched?(params[:tag]) && search_didnt_return_something?(params[:tag])
+    elsif tag_searched?(params[:tag]) && search_didnt_return_anything?(params[:tag])
       scraper(params[:tag])
 
       set_quotes
@@ -104,7 +104,7 @@ class Api::V1::QuotesController < ApplicationController
   end
 
   #método que checa se a busca feita anteriormente NÃO retornou algum resultado
-  def search_didnt_return_something?(tag_searched)
+  def search_didnt_return_anything?(tag_searched)
     Quote.all.none? { |quote| quote.tags[0] == tag_searched }
   end
 end
